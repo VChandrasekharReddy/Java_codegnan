@@ -7,6 +7,7 @@ public class UserClass extends Data{
 	NegativeDollar doller = new NegativeDollar();
 	BalanceAmmount balance = new BalanceAmmount();
 	Scanner sc = new Scanner(System.in);
+	String userId,pass;
 	int index =0;
 	
 	
@@ -19,13 +20,18 @@ public class UserClass extends Data{
 			System.out.print("Enter the password : ");
 			String upass = sc.nextLine();
 			if(upass.length()>8 && upass.contains("*")) {
-				user.add(new UserData(uname,uid,upass));
+				user.add(new UserData(uname,uid,upass,(double)(user.size()+1)));
 			}
 			else throw new InvalidPasswordFormatException();			
 	}
+	
+	
+	
+	
+	//user login function perform the login operation in this function
 	public void userLogin()throws InvalidPasswordFormatException  {
 		System.out.print("Enter the user id: ");
-		 String uid = sc.nextLine();
+		String uid = sc.nextLine();
 		System.out.print("Enter the password : ");
 		String upass = sc.nextLine();
 		if(upass.length()>8 && upass.contains("*")) {
@@ -34,8 +40,13 @@ public class UserClass extends Data{
 			while(userdata.hasNext()) {
 				UserData userd = userdata.next();
 				if(userd.getUid().equals(uid) && userd.getUpass().equals(upass)){
-					
-					userInterface(uid , upass);
+					if(userd.isBlock()) {
+						System.out.println("your Account is in hold state or blocked by the bank officials please contace the bank ");
+					}else {
+						userId = uid;
+						pass=upass;
+						userInterface(uid , upass);
+					}
 					
 				}
 				index++;
@@ -114,8 +125,15 @@ public class UserClass extends Data{
 				System.out.print("Do you want to delete the account \n then press 'y' for YES and 'n' for NO \n    :-");
 				char c = sc.next().charAt(0);
 				if(c=='y') {
-					user.remove(index);
-					b=false;
+					
+					Iterator<UserData> uu = user.iterator();
+					while(uu.hasNext()) {
+						UserData userd = uu.next();
+						if(userd.getUid().equals(userId) && userd.getUpass().equals(pass)){
+							uu.remove();
+							b= false;
+						}
+					}
 				}
 				
 				break;

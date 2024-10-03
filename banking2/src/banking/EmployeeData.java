@@ -1,11 +1,16 @@
 package banking;
 
-public class EmployeeData {
+public class EmployeeData{
 	private String ename;
 	private String eid;
 	private String epassword;
 	
 	
+	public EmployeeData(String ename,String eid, String epassword) {
+		this.ename = ename;
+		this.eid = eid;
+		this.epassword = epassword;
+	}
 	
 	public String getEname() {
 		return ename;
@@ -25,5 +30,7 @@ public class EmployeeData {
 	public void setEpassword(String epassword) {
 		this.epassword = epassword;
 	}
+
+
 
 }

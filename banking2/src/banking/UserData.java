@@ -1,20 +1,22 @@
 package banking;
 
-public class UserData {
+public class UserData implements Comparable<UserData> {
 	private String uname;
 	private String uid;
 	private String upass;
 	private int accountid;
 	private double accountNumber;
 	private double balance;
+	private boolean block;
 	
 	
-	public UserData(String uname, String uid, String upass ) {
+	public UserData(String uname, String uid, String upass ,double size) {
 		this.uname = uname;
 		this.uid = uid;
 		this.setUpass(upass);
-		accountNumber +=1;
-		accountid +=1;
+		accountNumber=size;
+		accountid= (int)size ;
+		setBlock(false);
 	}
 	
 	
@@ -63,4 +65,25 @@ public class UserData {
 		this.upass = upass;
 	}
 
+
+	@Override
+	public int compareTo(UserData o) {
+		// TODO Auto-generated method stub
+		return this.accountid-o.accountid;
+	}
+
+
+	public boolean isBlock() {
+		return block;
+	}
+
+
+	public void setBlock(boolean block) {
+		this.block = block;
+	}
+
+	   @Override
+	    public String toString() {
+	        return "User Name : " +uname+ "User ID : "+uid+" Account Number : "+accountNumber+"Account ID : " +accountid+" Account Balance "+ balance+" Status Blocked : "+block; 
+	    }
 }
