@@ -23,7 +23,8 @@ public class ContactServiceImpl implements ContactServiceInterface,ColourCodeInt
 					count+=contactdao.addContact(contact);
 				}
 			}catch(NumberFormatException e) {
-				e.printStackTrace();
+//				e.printStackTrace();
+				System.out.println(red+""+e.getMessage()+reset);
 				System.out.println("for :-> "+contact.getName());
 			}
 			

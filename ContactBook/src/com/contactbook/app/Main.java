@@ -18,7 +18,6 @@ public class Main implements ColourCodeInterface{
 		List<Contact> contactlist = new ArrayList<>();
 		ContactServiceInterface contactservice = new ContactServiceImpl();
 		Scanner sc = new Scanner(System.in);
-		String reset = "\u001B[0m";    // Reset to default color
 		String[] colourCodes = m.colorCodes;
 		int l = colourCodes.length;
 		Random r = new Random();		
