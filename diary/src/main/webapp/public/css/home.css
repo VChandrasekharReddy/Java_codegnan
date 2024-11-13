@@ -1,0 +1,112 @@
+@charset "UTF-8";
+/* Reset styles */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+/*  header section  */
+header{
+    height: 8vh;
+    width: 94%;
+    align-self: center;
+    margin-top: 2vh;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    background-color: rgb(255, 255, 255);
+    opacity: 0.7;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+}
+.webname{
+    color: blueviolet;
+    font-size: 30px;
+    font-weight: 900;
+}
+.userdiv{
+    width: fit-content;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.uslink{
+    margin: 0px 10px;
+    height: 60px;
+    width: 60px;
+    background-position: center;
+    background-size: cover;
+    background-image: url(../image/userimg.png);
+    border-radius: 60px;
+}
+.username{
+    font-size: 20px;
+    font-family: "Kode Mono", monospace;
+    font-weight: 700;
+}
+
+
+
+
+.monthsbtns{
+    width: fit-content;
+    display: flex;
+    flex-direction: row;
+
+}
+
+
+
+
+
+body{
+    height: 100vh;
+    width: 100%;
+    position: relative;
+    background-color: aliceblue;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.maindiv{
+    margin-top: 2vh;
+    height: 98vh;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.right, .left{
+    width: 90vh;
+    margin: 1% 1%;
+    height: 88%;
+    border-radius: 10px;
+    
+}
+.diaryfrom{
+    height: 78vh;
+    width: 100%;
+}
+.left{
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+}
+
+/* Textarea styling */
+textarea {
+    width: 100%;
+    height: calc(100% - 50px); /* Full height of the container */
+    padding: 10px;
+    overflow-y: scroll;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    resize: none; /* Disable resizing */
+    font-size: 18px; /* Increase font size */
+    line-height: 1.6; /* Adjust line spacing for better readability */
+    font-family: Arial, sans-serif; /* Set a clear font */
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+}
