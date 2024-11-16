@@ -1,0 +1,227 @@
+@charset "UTF-8";
+/* Reset styles */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+/*  header section  */
+header{
+    height: 8vh;
+    width: 94%;
+    align-self: center;
+    margin-top: 2vh;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    background-color: rgb(255, 255, 255);
+    opacity: 0.7;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+}
+.webname{
+    color: blueviolet;
+    font-size: 30px;
+    font-weight: 900;
+}
+.userdiv{
+    width: fit-content;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.uslink{
+    margin: 0px 10px;
+    height: 60px;
+    width: 60px;
+    background-position: center;
+    background-size: cover;
+    background-image: url(../image/userimg.png);
+    border-radius: 60px;
+}
+.username{
+    font-size: 20px;
+    font-family: "Kode Mono", monospace;
+    font-weight: 700;
+}
+
+
+
+
+
+
+
+
+
+
+body{
+    height: 100vh;
+    width: 100%;
+    position: relative;
+    background-color: aliceblue;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.maindiv{
+    margin-top: 2vh;
+    height: 98vh;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.right, .left{
+    width: 90vh;
+    margin: 1% 1%;
+    height: 80vh;
+    border-radius: 10px;
+    
+}
+.diaryfrom{
+    height: 78vh;
+    width: 100%;
+}
+.left{
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+}
+
+/* Textarea styling */
+textarea {
+    width: 100%;
+    height: calc(100% - 50px); /* Full height of the container */
+    padding: 10px;
+    overflow-y: scroll;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    resize: none; /* Disable resizing */
+    font-size: 18px; /* Increase font size */
+    line-height: 1.6; /* Adjust line spacing for better readability */
+    font-family: Arial, sans-serif; /* Set a clear font */
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+}
+.submitdiarybtn{
+    height: 4vh;
+    width: 20vh;
+    float: right;
+    margin-right: 20px;
+    margin-top:10px ;
+    background: none;
+    font-size: 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: rgb(89, 196, 200);
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+    transition: transform 0.2s ease-in;
+}
+.submitdiarybtn:hover{
+    transform: translateY(-3px) scale(1.01);
+}
+
+
+/* for left div and the year and the maonths div */
+
+.left{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.yeardsdiv{
+    height: 10vh;
+    padding: 10px;
+    width: 100%;
+    background-color: rgba(71, 82, 48, 0.393);
+    border-radius: 10px;
+    overflow-y: scroll;
+}
+
+
+/* year btns  */
+.yearbtn{
+height: 2.5vh;
+width: 10vh;
+border:none;
+border-radius: 3px;
+background-color: rgb(234, 225, 246);
+margin:0px 10px;
+    
+
+}
+
+/* montsh and datates btns  */
+.monthsdiv{
+    height: 69vh;
+    width: 100%;
+    margin-top: 1vh;
+    background-color: wheat;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    flex-wrap: wrap;
+    overflow-y: scroll;
+    
+}
+.monthdiv{
+    min-height: 23vh;
+    max-height: 40vh;
+    width: 30%;
+    padding-top: 20px;
+    background-color: rgba(221, 246, 255, 0.751);
+    margin: 10px;
+    flex-direction: row;
+    justify-content: left;
+    position: relative;
+    border-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+
+}
+.mn{
+    position: absolute;
+    top: 5px;
+    left: 15px;
+}
+.dbtn{
+    height: 50px;
+    width: 54px;
+    margin: 5px;
+    border-radius: 4px;
+    border: none;
+    background-color: #d6deff;
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+    transition: transform 0.2s ease-in;
+}
+.dbtn:hover{
+    transform: translate(-3px,-3px) scale(1.05);
+
+}
+
+.diarycontentdiv{
+    height: 70vh;
+    width: 100%;
+    padding: 15px;
+    padding-left: 20px;
+    background-color: wheat;
+    border-radius: 10px;
+    overflow-y: scroll;
+}
+.contentbtn{
+    height: 4vh;
+    width: 20vh;
+    float: right;
+    margin-right: 20px;
+    margin-top:10px ;
+    background: none;
+    font-size: 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: rgb(89, 196, 200);
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+    transition: transform 0.2s ease-in;
+}
+

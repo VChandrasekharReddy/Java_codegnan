@@ -1,11 +1,14 @@
 package com.diary.dao;
 
 import java.sql.Connection;
-
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
+import com.diary.model.Data;
 import com.diary.model.User;
 
 public class DiaryDAOImpl implements DiaryDAOInterface {
@@ -15,6 +18,7 @@ public class DiaryDAOImpl implements DiaryDAOInterface {
     private static final String PASS = "root";
     private static final String LOGIN_QUERY = "SELECT count(*) AS count FROM user WHERE userid = ? AND password = ?;";
     private static final String User_Date = "SELECT * FROM user WHERE userid = ? AND password = ?;";
+    private static final String Get_Data = "SELECT * FROM  data WHERE userid = ? order by date;";
 
     @Override
     public boolean loginaction(String username, String password) {
@@ -76,7 +80,32 @@ public class DiaryDAOImpl implements DiaryDAOInterface {
 	        } catch (SQLException e) {
 	            e.printStackTrace();
 	        } 
-	        return user;
+	        return user; 
 
+	}
+
+	@Override
+	public List<Data> getdata(String userid) {
+		List<Data> datalist = new ArrayList<>();
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}try (Connection con = DriverManager.getConnection(URL, USER, PASS);
+	             PreparedStatement ps = con.prepareStatement(Get_Data)) {
+	            ps.setString(1, userid);
+	            ResultSet rs = ps.executeQuery();
+	            while(rs.next()) {
+	            	datalist.add(new Data(rs.getString("userid"),rs.getTimestamp("date").toLocalDateTime(),rs.getString("mater")));
+	            	
+	            }
+	            if(rs!=null) rs.close();
+	            if(con!= null) con.close();
+	            if(ps!=null) ps.close();
+	        } catch (SQLException e) {
+	            e.printStackTrace();
+	        } 
+		return datalist;
 	}
 }
