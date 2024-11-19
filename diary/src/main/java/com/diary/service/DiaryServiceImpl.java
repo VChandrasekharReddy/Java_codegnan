@@ -1,5 +1,6 @@
 package com.diary.service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import com.diary.dao.DiaryDAOImpl;
@@ -25,5 +26,11 @@ public class DiaryServiceImpl implements DiaryServiceInterface {
 	public List<Data> getdata(String userid) {
 		// TODO Auto-generated method stub
 		return diaryDao.getdata(userid);
+	}
+
+	@Override
+	public boolean adddiary(String userid, LocalDate today, String mater) {
+		// TODO Auto-generated method stub
+		return diaryDao.adddiary(userid,today,mater);
 	}
 }

@@ -34,12 +34,12 @@
         for(Data data:datalist){
         	localdatetime.add(data.getDate());
         	if(!yearlist.contains(data.getDate().getYear())) yearlist.add(data.getDate().getYear());
-        	matarmap.put(data.getDate().toLocalDate(), data.getMater());
+        	matarmap.put(data.getDate().toLocalDate(), data.getMater().replace("\n", "<br>"));
         }
 		%>
         <div class="userdiv">  <!--for the userdetails-->
             <p class="username" id="username"><%= username %></p>
-            <a href="" class="uslink" id="uslink"></a>
+            <a href="profile.jsp" class="uslink" id="uslink"></a>
         </div>
     </header>
 
@@ -67,8 +67,7 @@
             		out.print("<div class='monthdiv'><p class='mn'>"+month+"</p>");
             		for(LocalDateTime ldt:localdatetime){
             			if(ldt.getYear()==year && ldt.getMonth().toString()==month){
-            				out.print("<button class='dbtn' onclick='displaydiary(\""+matarmap.get(ldt.toLocalDate())+"\")' >"+ldt.getDayOfMonth()+"</button>");
-            			}
+            				out.print("<button class='dbtn' onclick='displaydiary(\""+matarmap.get(ldt.toLocalDate())+"\")' ><p>"+(ldt.getDayOfWeek().toString()).substring(0,3)+"</p><p>"+ldt.getDayOfMonth()+"</p></button>");            			}
             		}
             		out.print("</div>");
             	}
@@ -80,16 +79,31 @@
             %>      
 
         <div class="right">
-            <form class="diaryfrom" id="diaryfrom" action="" method="post">
-                <textarea id="diary-entry" placeholder="Write your diary entry here..." required ></textarea>
-                <input class="submitdiarybtn" type="submit" value="save">
+            <form class="diaryfrom" id="diaryfrom" action="../../SaveDiaryServlet" method="post">
+            <div class="mb">
+					<%
+					    String message = (String) session.getAttribute("message");
+					    if (message != null) {
+					        out.print("<p id='messageid' class='messagetext'>" + message + "</p>");
+					        session.removeAttribute("message"); // Clear the message
+					    } else {
+					        out.print("<p id='messageid' class='messagetext'></p>");
+					    }
+					%>
+					<input class="submitdiarybtn" type="submit" value="save Diary">                </div>
+                <textarea id="diary-entry" name="diarydata" placeholder="Write your diary entry here..." required ></textarea>
+                
             </form>
             <div class="diarydiv" id="diarydiv">
+                <div class="mb">
+                    <p class="messagetext"></p>
+                    <button class="contentbtn" onclick="displaytextarea()">Write Today Diary</button>
+                </div>
                 <div class="diarycontentdiv" id="diarycontentdiv">
                     <p class="dc" id="dc"></p>
                     
                 </div>
-                <button class="contentbtn" onclick="displaytextarea()">This Day</button>
+                
             </div>
         </div>
     </div>
@@ -98,59 +112,60 @@
     
    
    <script>
-   let yearlist = <%=yearlist%>;
-   
-   
-   
-   
-   
-   
-   
-   function displayyeardiv(y) {
-       yearlist.forEach((year) => {
-           const element = document.getElementById('a' + year);
-           if (element) {
-               if (y == year) {
-                   element.style.display = 'flex';
-                   document.getElementById('b' + year).style.scale=1.1;// Show the div for the selected year
-               } else {
-                   element.style.display = 'none';
-                   document.getElementById('b' + year).style.scale=1;// Hide the other year divs
-               }
-           }
-       });
-   }
-   
-   
-   
-   
- //to display the content in the rigth side of diarydiv > dc and make diaryfrom display none onclick from 70
- function displaydiary(data) {
-	 document.getElementById('diaryfrom').style.display = 'none';
-	  document.getElementById('diarydiv').style.display = 'block';
-	  document.getElementById('dc').innerHTML=data;
-      }
- 
- function displaytextarea(){
-	 document.getElementById('diaryfrom').style.display = 'block';
-	  document.getElementById('diarydiv').style.display = 'none';
- }
-   
-   
-   
-   
-   //default display nones 
-       // Hide all year divs by default
-    yearlist.forEach((year) => {
-        const element = document.getElementById('a' + year);
-        if (element) {
-            element.style.display = 'none'; // Hide the divs for all years initially
-        }
-    });
-    document.getElementById('diarydiv').style.display = 'none';
-    document.getElementById('a' + yearlist[yearlist.length-1]).style.display='flex';
-    document.getElementById('b' + yearlist[yearlist.length-1]).style.scale=1.1;
-
+		   let yearlist = <%=yearlist%>;
+		   
+		   
+		   
+		   
+		   
+		   
+		   
+		   function displayyeardiv(y) {
+		       yearlist.forEach((year) => {
+		           const element = document.getElementById('a' + year);
+		           if (element) {
+		               if (y == year) {
+		                   element.style.display = 'flex';
+		                   document.getElementById('b' + year).style.scale=1.1;// Show the div for the selected year
+		               } else {
+		                   element.style.display = 'none';
+		                   document.getElementById('b' + year).style.scale=1;// Hide the other year divs
+		               }
+		           }
+		       });
+		   }
+		   
+		   
+		   
+		   
+		 //to display the content in the rigth side of diarydiv > dc and make diaryfrom display none onclick from 70
+		 function displaydiary(data) {
+			 document.getElementById('diaryfrom').style.display = 'none';
+			  document.getElementById('diarydiv').style.display = 'block';
+			  document.getElementById('dc').innerHTML=data;
+		      }
+		 
+		 function displaytextarea(){
+			 document.getElementById('diaryfrom').style.display = 'block';
+			  document.getElementById('diarydiv').style.display = 'none';
+		 }
+		 	   
+		   //default display nones 
+		       // Hide all year divs by default
+		    yearlist.forEach((year) => {
+		        const element = document.getElementById('a' + year);
+		        if (element) {
+		            element.style.display = 'none'; // Hide the divs for all years initially
+		        }
+		    });
+		    document.getElementById('diarydiv').style.display = 'none';
+		    document.getElementById('a' + yearlist[yearlist.length-1]).style.display='flex';
+		    document.getElementById('b' + yearlist[yearlist.length-1]).style.scale=1.1;
+			//clear the message
+			        setTimeout(() => {
+			        document.getElementById('messageid').innerText = '';
+            
+            }, 3000);
     
    
    </script>    
@@ -162,7 +177,6 @@
     
 </body>
 </html>
-
 
 
 

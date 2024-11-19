@@ -1,5 +1,6 @@
 package com.diary.model;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public class User {
@@ -11,8 +12,13 @@ public class User {
 	private String question;
 	private String answer;
 	private LocalDateTime dateofjoin;
+	private LocalDate dataofbirth;
+	private int activedays;
+	
+	
+	
 	public User(String userid, String username, String mobilenumber, String email, String password, String question,
-			String answer, LocalDateTime dateofjoin) {
+			String answer, LocalDateTime dateofjoin, LocalDate dataofbirth, int activedays) {
 		super();
 		this.userid = userid;
 		this.username = username;
@@ -22,6 +28,22 @@ public class User {
 		this.question = question;
 		this.answer = answer;
 		this.dateofjoin = dateofjoin;
+		this.dataofbirth = dataofbirth;
+		this.activedays = activedays;
+	}
+	
+	
+	public LocalDate getDataofbirth() {
+		return dataofbirth;
+	}
+	public void setDataofbirth(LocalDate dataofbirth) {
+		this.dataofbirth = dataofbirth;
+	}
+	public int getActivedays() {
+		return activedays;
+	}
+	public void setActivedays(int activedays) {
+		this.activedays = activedays;
 	}
 	public String getUserid() {
 		return userid;
