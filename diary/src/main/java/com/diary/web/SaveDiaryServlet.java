@@ -44,7 +44,7 @@ public class SaveDiaryServlet extends HttpServlet {
 		else {
 			message = "error while addling the data......";
 		}
-		session.setAttribute("message", message); // Store in session
+
 		response.sendRedirect(request.getContextPath() + "/public/html/home.jsp");
 	}
 	

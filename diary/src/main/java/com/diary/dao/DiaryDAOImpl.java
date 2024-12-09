@@ -6,7 +6,6 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,12 +14,20 @@ import com.diary.model.Data;
 import com.diary.model.User;
 
 public class DiaryDAOImpl implements DiaryDAOInterface {
-    private static final String URL = "jdbc:mysql://localhost:3306/diary";
+   // private static final String URL = "jdbc:mysql://localhost:3306/diary";
+    
+    private static final String URL = "jdbc:mysql://diaryid-1.c3gai4yo8qm0.ap-south-1.rds.amazonaws.com:3306/diarydb";
+
+    
+    
+    
     private static final String USER = "root";
-    private static final String PASS = "root";
+    private static final String PASS = "Chandra123";
     private static final String LOGIN_QUERY = "SELECT count(*) AS count FROM user WHERE userid = ? AND password = ?;";
     private static final String User_Data = "SELECT * FROM user WHERE userid = ? AND password = ?;";
     private static final String Get_Data = "SELECT * FROM  data WHERE userid = ? order by date;";
+    private static final String getuserid = "SELECT * FROM user WHERE userid = ? ;";
+    private static final String registeruser = "INSERT INTO user VALUES(?,?,?,?,?,?,?,?,?);";
 
     @Override
     public boolean loginaction(String username, String password) {
@@ -174,7 +181,100 @@ public class DiaryDAOImpl implements DiaryDAOInterface {
 		}
 		return status;
 	}
-}
+
+	@Override
+	public boolean unique(String userid) {
+		// TODO Auto-generated method stub
+		boolean b = false;
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			
+		}catch(ClassNotFoundException e ) {
+			e.printStackTrace();
+		}
+		try{
+			Connection con = DriverManager.getConnection(URL,USER,PASS);
+			PreparedStatement ps = con.prepareStatement(getuserid);
+			ps.setString(1, userid);
+			ResultSet rs = ps.executeQuery();
+			if(rs.next()) {
+				b=true;
+			}
+            if (ps != null) ps.close();
+            if (rs != null) rs.close();
+            if(rs!=null) rs.close();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return b;
+	}
+
+	@Override
+	public boolean registeruser(User user) {
+		// TODO Auto-generated method stub
+		boolean b = false;
+		
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			
+		}catch(ClassNotFoundException e ) {
+			e.printStackTrace();
+		}
+		try {
+			Connection con = DriverManager.getConnection(URL,USER,PASS);
+			PreparedStatement ps = con.prepareStatement(registeruser);
+			ps.setString(1, user.getUserid());
+			ps.setString(2,user.getUsername());
+			ps.setString(3, user.getMobilenumber());
+			ps.setString(4, user.getEmail());
+			ps.setString(5, user.getPassword());
+			ps.setString(6, user.getQuestion());
+			ps.setString(7, user.getAnswer());
+			ps.setDate(8, Date.valueOf(user.getDateofjoin().toLocalDate()));
+			ps.setDate(9, Date.valueOf(user.getDataofbirth()));
+			b=ps.executeUpdate()>0;
+            if (ps != null) ps.close();
+            if (con != null) con.close();
+			
+		}catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return b;
+	}
+
+	@Override
+	public boolean useridstatus(String userid) {
+		// TODO Auto-generated method stub
+		boolean b = true;
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			
+		}catch(ClassNotFoundException e ) {
+			e.printStackTrace();
+		}
+		try {
+			Connection con = DriverManager.getConnection(URL,USER,PASS);
+			PreparedStatement ps = con.prepareStatement("select * from user where userid =?;");
+			ps.setString(1, userid);
+			ResultSet rs = ps.executeQuery();
+			if(rs.next()) {
+				b=false;
+			}
+            if (ps != null) ps.close();
+            if (con != null) con.close();
+            if(rs!= null) rs.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return b;
+	}
+
+	}
 
 
 

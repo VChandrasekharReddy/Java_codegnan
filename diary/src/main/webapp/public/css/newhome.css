@@ -1,11 +1,13 @@
 @charset "UTF-8";
 @import url('https://fonts.googleapis.com/css2?family=Edu+AU+VIC+WA+NT+Pre:wght@400..700&family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=Kablammo&family=Kode+Mono:wght@400..700&family=Permanent+Marker&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Edu+AU+VIC+WA+NT+Pre:wght@400..700&family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=Kablammo&family=Kode+Mono:wght@400..700&family=Merienda:wght@300..900&family=Permanent+Marker&display=swap');
 /* Reset styles */
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
     font-family: Arial, sans-serif;
+    color: #0D2B1D;
 }
 /*  header section  */
 header{
@@ -23,7 +25,7 @@ header{
     box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
 }
 .webname{
-    color: blueviolet;
+    color: #0D2B1D;
     font-size: 30px;
     font-weight: 900;
 }
@@ -62,7 +64,7 @@ body{
     height: 100vh;
     width: 100%;
     position: relative;
-    background-color: aliceblue;
+    background-color: #E3EFD3;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -95,15 +97,17 @@ body{
 
 /* Textarea styling */
 textarea {
-	font-family: "IBM Plex Mono", monospace;
-    font-weight: 400;
-    font-style: normal;
+    font-family: "Merienda", cursive;
+    color: black;
+    font-size: 20px;
+    font-weight: 700;
     width: 100%;
     height: calc(100% - 50px); /* Full height of the container */
     padding: 10px;
     overflow-y: scroll;
+    background-color: #e9f0e0;
     border: 1px solid #ccc;
-    border-radius: 5px;
+    border-radius: 2px;
     resize: none; /* Disable resizing */
     font-size: 18px; /* Increase font size */
     line-height: 1.6; /* Adjust line spacing for better readability */
@@ -115,7 +119,7 @@ textarea {
     font-size: 20px;
     border: none;
     border-radius: 5px;
-    background-color: rgb(89, 196, 200);
+    background-color: #345635;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
     transition: transform 0.2s ease-in;
 }
@@ -136,7 +140,7 @@ textarea {
     height: 10vh;
     padding: 10px;
     width: 100%;
-    background-color:#d6deff;
+    background-color:#AEC3B0;
     box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
     border-radius: 10px;
     overflow-y: scroll;
@@ -147,17 +151,18 @@ textarea {
 /* year btns  */
 .yearbtn{
 height: 5vh;
+font-weight: 600;
 width: 6vh;
 border:none;
 border-radius: 3px;
-background-color: rgb(209, 146, 255);
-margin:0px 10px;
+background-color: #6B8F71;
+margin:30px 10px;
 box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
 transition: all 0.2s ease;
 }
 .yearbtn:hover{
     transform: translate(-3px,-3px) scale(1.01);
-    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(182, 59, 213, 0.623) 0px -5vh 0px inset;
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, #345635 0px -5vh 0px inset;
 
 }
 
@@ -166,8 +171,8 @@ transition: all 0.2s ease;
     height: 69vh;
     width: 100%;
     margin-top: 1vh;
-    background-color: rgb(255, 255, 255);
-    border-radius: 10px;
+    background-color: #e9f0e0;
+    border-radius: 2px;
     display: flex;
     flex-direction: row;
     justify-content: left;
@@ -178,33 +183,33 @@ transition: all 0.2s ease;
     min-height: 23vh;
     max-height: 40vh;
     width: 30%;
+
     padding-top: 20px;
-    background-color:honeydew;
+    background-color: #AEC3B0;
     margin: 10px;
     flex-direction: row;
     justify-content: left;
     position: relative;
-    border-radius: 5px;
+    border-radius: 2px;
     box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
-
 }
 .mn{
     position: absolute;
     top: 5px;
     left: 15px;
    font-family: "IBM Plex Mono", monospace;
-  font-weight: 400;
+  font-weight: 600;
   font-style: normal;
 }
 .dbtn{
     height: 50px;
     width: 54px;
     margin: 5px;
-    border-radius: 4px;
+    border-radius: 2px;
     border: none;
-    background-color: #d6deff;
-    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
-    transition: transform 0.2s ease-in;
+    font-weight: 800;
+    background-color: #6B8F71;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;    transition: transform 0.2s ease-in;
 }
 .dbtn:hover{
     transform: translate(-3px,-3px) scale(1.05);
@@ -212,6 +217,10 @@ transition: all 0.2s ease;
 }
 
 .diarycontentdiv{
+    font-family: "Merienda", cursive;
+    color: black;
+    font-size: 20px;
+    font-weight: 700;
     height: 70vh;
     width: 100%;
     margin-top:10px;
@@ -230,7 +239,7 @@ transition: all 0.2s ease;
     font-size: 20px;
     border: none;
     border-radius: 5px;
-    background-color: rgb(89, 196, 200);
+    background-color: #345635;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
     transition: transform 0.2s ease-in;
 }
@@ -238,10 +247,10 @@ transition: all 0.2s ease;
     transform: translateY(-3px) scale(1.01);
 }
 .dc{
-  font-family: "IBM Plex Mono", monospace;
-  font-weight: 400;
-  font-size:24px;
-  font-style: normal;
+    font-family: "Merienda", cursive;
+    color: black;
+    font-size: 20px;
+    font-weight: 700;
 }
 .messagetext{
     font-family: "IBM Plex Mono", monospace;

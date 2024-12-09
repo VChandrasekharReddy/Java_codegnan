@@ -1,14 +1,28 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ page import="com.diary.model.User" %>
+    
 <!DOCTYPE html>
 <html lang="en">
 <head>
+	<link rel="icon" type="image/png" href="public/image/diarylogo.png">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>login</title>
+    <title>Diary</title>
     <link rel="stylesheet" href="public/css/login.css">
 </head>
 <body>
+
+<%
+	response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+	response.setHeader("Pragma", "no-cache");
+	response.setDateHeader("Expires", 0);
+    if (session != null && session.getAttribute("userdata") != null) {
+        // User is already logged in, redirect to home
+        response.sendRedirect(request.getContextPath() + "/public/html/home.jsp");
+        return;
+    }
+%>
     <div class="back"></div>
     <div class="moving"></div>
     <div class="outer">
@@ -477,5 +491,21 @@
             %>       
         </form>
     </div>
+    <script>
+	
+ // Prevent the user from navigating back to the previous page
+    window.onload = function () {
+        // Push the current page to the history stack
+        history.pushState(null, null, location.href);
+        
+        // Listen for when the user tries to go back, and push the current page again
+        window.onpopstate = function () {
+            history.pushState(null, null, location.href);
+        };
+    };
+    
+    </script>
+    
+
 </body>
 </html>

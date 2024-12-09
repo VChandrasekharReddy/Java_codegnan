@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@page import="java.util.*" %>
-<%@page import="java.sql.*" %>
-<%@page import="java.time.*" %>
+<%@ page import="java.util.*" %>
+<%@ page import="java.sql.*" %>
+<%@ page import="java.time.*" %>
 <%@ page import="java.util.List" %>
 <%@ page import="java.util.Collection" %>
 <%@ page import="com.diary.model.User" %>
@@ -11,9 +11,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+	<link rel="icon" type="image/png" href="../image/diarylogo.png">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Diary Input Area</title>
+    <title>Diary</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Kode+Mono:wght@400..700&display=swap" rel="stylesheet">
@@ -23,12 +24,16 @@
 	<header>
         <p class="webname">Diary</p> <!--for logo-->
         <%
+    	response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+    	response.setHeader("Pragma", "no-cache");
+    	response.setDateHeader("Expires", 0);
         DiaryServiceImpl service = new DiaryServiceImpl();
         List<Integer> yearlist =new ArrayList<>();
         List<LocalDateTime> localdatetime = new ArrayList<>();
         List<String> monthlist = new ArrayList<>();
         User user = (User) session.getAttribute("userdata");
         String username = (user != null) ? user.getUsername() : "Guest";
+        if(!(username.equals("Guest"))){
         List<Data> datalist = new ArrayList<>(service.getdata(user.getUserid()));
         Map<LocalDate , String > matarmap = new HashMap<>();
         for(Data data:datalist){
@@ -36,6 +41,8 @@
         	if(!yearlist.contains(data.getDate().getYear())) yearlist.add(data.getDate().getYear());
         	matarmap.put(data.getDate().toLocalDate(), data.getMater().replace("\n", "<br>"));
         }
+        
+ 
 		%>
         <div class="userdiv">  <!--for the userdetails-->
             <p class="username" id="username"><%= username %></p>
@@ -89,6 +96,11 @@
 					    } else {
 					        out.print("<p id='messageid' class='messagetext'></p>");
 					    }
+					    
+        }else{
+        	response.sendRedirect("../../login.jsp");
+        	return;
+        }
 					%>
 					<input class="submitdiarybtn" type="submit" value="save Diary">                </div>
                 <textarea id="diary-entry" name="diarydata" placeholder="Write your diary entry here..." required ></textarea>
@@ -112,14 +124,12 @@
     
    
    <script>
+   
+   
+
+
 		   let yearlist = <%=yearlist%>;
-		   
-		   
-		   
-		   
-		   
-		   
-		   
+
 		   function displayyeardiv(y) {
 		       yearlist.forEach((year) => {
 		           const element = document.getElementById('a' + year);
@@ -166,8 +176,29 @@
 			        document.getElementById('messageid').innerText = '';
             
             }, 3000);
-    
-   
+			
+			
+			
+			        history.pushState(null, null, location.href);
+			        window.onpopstate = function () {
+			            history.pushState(null, null, location.href);
+			        };
+			        window.onload = function () {
+			            history.pushState(null, null, location.href);
+			            window.onpopstate = function () {
+			                history.pushState(null, null, location.href);
+			            };
+			            location.replace(request.getContextPath() + "/public/html/home.jsp");  // Replaces the current page in history with home.jsp
+
+			        };
+			        window.onchange = function () {
+			            history.pushState(null, null, location.href);
+			            window.onpopstate = function () {
+			                history.pushState(null, null, location.href);
+			            };
+			            location.replace(request.getContextPath() + "/public/html/home.jsp");  // Replaces the current page in history with home.jsp
+
+			        };
    </script>    
     
 

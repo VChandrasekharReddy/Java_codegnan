@@ -11,4 +11,7 @@ public interface DiaryDAOInterface {
 	public User getuserdata(String userid, String password);
 	public List<Data> getdata(String userid);
 	public boolean adddiary(String userid , LocalDate date,String mater);
+	public boolean unique(String userid);
+	public boolean registeruser(User user);
+	public boolean useridstatus(String userid);
 }

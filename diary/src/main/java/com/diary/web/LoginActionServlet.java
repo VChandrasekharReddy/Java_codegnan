@@ -21,17 +21,22 @@ public class LoginActionServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
+
         if (diaryService.loginservice(username, password)) {
             // User authenticated successfully, create a session
-        	User userdata = diaryService.getuserdata(username,password);
+            User userdata = diaryService.getuserdata(username, password);
             HttpSession session = request.getSession();
             session.setAttribute("userdata", userdata);
             session.setMaxInactiveInterval(60 * 60 * 24 * 7); // Session timeout set to 7 days;
+
             response.sendRedirect(request.getContextPath() + "/public/html/home.jsp");
         } else {
             // Authentication failed, redirect back to login with an error message
+            response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+            response.setHeader("Pragma", "no-cache");
+            response.setDateHeader("Expires", 0);
             response.sendRedirect("login.jsp?error=invalid_credentials");
         }
-
     }
+
 }
