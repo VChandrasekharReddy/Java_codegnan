@@ -16,12 +16,12 @@ import com.diary.model.User;
 public class DiaryDAOImpl implements DiaryDAOInterface {
    // private static final String URL = "jdbc:mysql://localhost:3306/diary";
     
-    private static final String URL = "jdbc:mysql://diaryid-1.c3gai4yo8qm0.ap-south-1.rds.amazonaws.com:3306/diarydb";
+    private static final String URL = "jdbc:mysql://diarydatabase.c3gai4yo8qm0.ap-south-1.rds.amazonaws.com:3306/diarydb";
 
     
     
     
-    private static final String USER = "root";
+    private static final String USER = "master";
     private static final String PASS = "Chandra123";
     private static final String LOGIN_QUERY = "SELECT count(*) AS count FROM user WHERE userid = ? AND password = ?;";
     private static final String User_Data = "SELECT * FROM user WHERE userid = ? AND password = ?;";

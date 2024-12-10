@@ -17,11 +17,12 @@
 	response.setHeader("Pragma", "no-cache");
 	response.setDateHeader("Expires", 0);
 	String error = request.getParameter("error");
-	if(error==null){
-	error="";	
+	if(error!=null){
+	out.print("<div class='messageclass' id='messageclass'><p id='errormessage'>"+error+"</p></div>");	
 	}
+	
 	%>
-	<div class="messageclass" id="messageclass"><p id="errormessage"><%=error%></p></div>
+	
     <div class="back"></div>
     <div class="moving"></div>
     <div class="outer">
@@ -531,8 +532,7 @@
             <!-- Submit Button -->
             <button type="submit">Register</button>
             <p>Already have an account? <a href="../../login.jsp">Login here</a></p><br>
-            <p style="color: red;"><%=error%></p>
-               <% String error1 = request.getParameter("error");
+              <% String error1 = request.getParameter("error");
                 if ("invalid_credentials".equals(error)) {
             %>
                 <p style="color: red;">Invalid username or password. Please try again.</p>
